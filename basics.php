@@ -137,8 +137,3 @@
 </body>
 
 </html>
-
-Date: 12/03/2022
-Project: WMT Training
--implemented all the basics concepts of php
--learnt and implemented the server, get, post, request.
