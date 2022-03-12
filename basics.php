@@ -9,11 +9,13 @@
 </head>
 
 <body>
-    <h3>Using if_else, functions</h3>
-    <form method="POST">
+    <h2>Using if_else, functions</h2>
+    <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
         <input type="number" name="num1" placeholder="Enter a value">
         <input type="number" name="num2" placeholder="Enter a value">
         <input type="submit" value="Click to Add" name="add"><br><br>
+        Name: <input type="text" name="fname">
+        <input type="submit">
     </form>
 
     <?php
@@ -29,7 +31,7 @@
         return $n1 + $n2;
     }
 
-    echo "<h3>Using if_elseif</h3>";
+    echo "<h2>Using if_elseif</h2>";
     date_default_timezone_set("Asia/Kolkata");
     $t = date("H");
 
@@ -44,7 +46,7 @@
     const x = "anuj";
     echo x . "<br>";
 
-    echo "<h3>Using arrays,foreach loop</h3>";
+    echo "<h2>Using arrays,foreach loop</h2>";
     $colors = array("red", "green", "blue", "yellow", "orange", "purple", "brown", "violet", "maroon");
 
     foreach ($colors as $x => $value) {
@@ -53,7 +55,7 @@
         }
         echo "$x=$value <br>";
     }
-    echo "<h3>Switch Case</h3>";
+    echo "<h2>Switch Case</h2>";
     $favcolor = "blue";
 
     switch ($favcolor) {
@@ -69,7 +71,7 @@
         default:
             echo "You have different favorite color";
     }
-    echo "<h3>Do While Loop</h3>";
+    echo "<h2>Do While Loop</h2>";
     $x = 1;
 
     do {
@@ -77,15 +79,15 @@
         $x++;
     } while ($x <= 5);
 
-    echo "<h3>Using string functions</h3>";
+    echo "<h2>Using string functions</h2>";
     $string = "Anuj Panchal";
-    echo "Length of string" . strlen($string) . "<br>";
-    echo "Word Count of string is:" . str_word_count($string) . "<br>";
-    echo "Reverse string is" . strrev($string) . "<br>";
-    echo "Searching letter from position" . strpos($string, "Pa") . "<br>";
-    echo "Replacing string" . str_replace("Pan", "shah", $string);
+    echo "Length of string: " . strlen($string) . "<br>";
+    echo "Word Count of string is: " . str_word_count($string) . "<br>";
+    echo "Reverse string is: " . strrev($string) . "<br>";
+    echo "Searching letter from position: " . strpos($string, "Pa") . "<br>";
+    echo "Replacing string: " . str_replace("Pan", "shah", $string);
 
-    echo "<h3>Using is_int,is_float,is_finite,isInfinite,is_NAN</h3>";
+    echo "<h2>Using is_int,is_float,is_finite,isInfinite,is_NAN</h2>";
     $x = 5985;
     var_dump(is_int($x));
     echo "<br>";
@@ -97,7 +99,46 @@
     echo "<br>is nan";
     $some = 8;
     var_dump(is_nan($some));
+    echo "<br>";
+    echo $_SERVER['PHP_SELF'];
+    echo "<br>";
+    echo $_SERVER['SERVER_NAME'];
+    echo "<br>";
+    echo $_SERVER['HTTP_HOST'];
+    echo "<br>";
+    echo $_SERVER['HTTP_USER_AGENT'];
+    echo "<br>";
+    echo $_SERVER['HTTP_REFERER'];
+    echo "<br>";
+    echo $_SERVER['SCRIPT_NAME'];
+    echo "<br>";
+    echo "$GLOBALS Variable";
+    $x = 75;
+    $y = 25;
+
+    function addition()
+    {
+        $GLOBALS['z'] = $GLOBALS['x'] + $GLOBALS['y'];
+    }
+
+    addition();
+    echo $z;
+
+    echo "<br>";
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $name = $_REQUEST['fname'];
+        if (empty($name)) {
+            echo "Name is empty! Please enter your Name";
+        } else {
+            echo $name;
+        }
+    }
     ?>
 </body>
 
 </html>
+
+Date: 12/03/2022
+Project: WMT Training
+-implemented all the basics concepts of php
+-learnt and implemented the server, get, post, request.
