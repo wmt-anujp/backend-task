@@ -99,6 +99,3 @@
 </body>
 
 </html>
-Date: 14/03/2022
-Project: WMT Internal
-- learnt and implemented oops concepts like classes/objects, constructor, destructor, access modifiers,inheritance, constants.
