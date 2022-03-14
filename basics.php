@@ -113,6 +113,8 @@
     echo $_SERVER['SCRIPT_NAME'];
     echo "<br>";
     echo "$GLOBALS Variable";
+
+    echo "function for adding numbers";
     $x = 75;
     $y = 25;
 
