@@ -189,7 +189,13 @@
     $tmp_obj2 = new temporary();
     $tmp_obj2->alert();
     // greeting::warning();
+    echo "Welcome: " . $_POST['name'] . "<br>";
+    echo "Your email address is: " . $_POST["email"] . "<br>";
     ?>
 </body>
 
 </html>
+Date: 15/03/2022
+Project: WMT Training
+-learnt and implemented the oops concepts like abstract classes, traits, static methods and properties.
+-learnt form handling and form validation.
