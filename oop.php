@@ -195,7 +195,3 @@
 </body>
 
 </html>
-Date: 15/03/2022
-Project: WMT Training
--learnt and implemented the oops concepts like abstract classes, traits, static methods and properties.
--learnt form handling and form validation.
