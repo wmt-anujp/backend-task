@@ -189,8 +189,6 @@
     $tmp_obj2 = new temporary();
     $tmp_obj2->alert();
     // greeting::warning();
-    echo "Welcome: " . $_POST['name'] . "<br>";
-    echo "Your email address is: " . $_POST["email"] . "<br>";
     ?>
 </body>
 
