@@ -22,11 +22,24 @@
     echo "<h2 style=color:lightgreen>File Handling</h2>";
     // echo readfile("oop.php");
     $fileread_var = fopen("oop.php", "r") or die("File not found");
-    while (!feof($fileread_var)) {
-        echo fgets($fileread_var);
-    }
+    // while (!feof($fileread_var)) {
+    //     echo fgets($fileread_var);
+    // }
     fclose($fileread_var);
+
+    echo "<h2 style=color:lightgreen>Create/Write Section:</h2>";
+    // $myfile = fopen("temp.txt", "w") or die("Unable to open file!");
+    // $txt = "Anuj Panchal\n";
+    // fwrite($myfile, $txt);
+    // $txt = "PS\n";
+    // fwrite($myfile, $txt);
+    // fclose($myfile);
+    echo "<h2 style=color:lightgreen>File Upload</h2>";
     ?>
+    <form action="uploads.php" method="POST" enctype="multipart/form-data">
+        <input type="file" name="fileupload" id="fileupload" required><br><br>
+        <input type="submit" name="submit" value="submit">
+    </form>
 </body>
 
 </html>
