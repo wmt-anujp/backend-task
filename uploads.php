@@ -9,6 +9,7 @@
 
 <body>
     <?php
+    session_start();
     $target_dir = "uploads/";
     $target_file = $target_dir . basename($_FILES["fileupload"]["name"]);
     echo $target_file . "<br>";
@@ -50,6 +51,8 @@
             echo "Sorry, there was an error while uploading your file.<br>";
         }
     }
+    echo "Your favourite color is: " . $_SESSION["favcolor"] . "<br>";
+    echo "Your facourite car is: " . $_SESSION["favcar"] . "<br>";
     ?>
 </body>
 
