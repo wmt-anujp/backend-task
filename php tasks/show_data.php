@@ -18,21 +18,33 @@
     $count = mysqli_num_rows($query_execute);
     echo '<table class="table table-striped table-hover table-bordered my-4">
         <tr style="text-align:center">
-            <th class="bg-success" scope="col">Sr. No.</th>
-            <th class="bg-success" scope="col">Title</th>
-            <th class="bg-success" scope="col">Description</th>
-            <th class="bg-success" scope="col">Actions</th>
+            <th class="bg-success">Serial Number</th>
+            <th class="bg-success">Title</th>
+            <th class="bg-success">Description</th>
+            <th class="bg-success">Actions</th>
         </tr>';
     while ($row = mysqli_fetch_assoc($query_execute)) {
         echo "<tr style='text-align:center'>
             <td>" . $row['Sr'] . "</td>
             <td>" . $row['Title'] . "</td>
             <td>" . $row['Description'] . "</td>
-            <td><button type='submit' class='update btn btn-sm btn-primary' name='update' id=" . $row['Sr'] . ">Update</button>
-            <button type='submit' class='delete btn btn-sm btn-secondary' name='delete' id=" . $row['Sr'] . ">Delete</button></td>
+            <td><a class='btn btn-sm btn-primary' href='update.php?usrno=" . $row['Sr'] . "' style='text-decoration:none'>Update</a>
+            <a class='btn btn-sm btn-secondary' href='delete.php?dsrno=" . $row['Sr'] . "' style='text-decoration:none'>Delete</a></td>
         </tr>";
     }
     echo '</table>';
+    if (isset($_GET['dsrno'])) {
+        $dsrno = $_GET['dsrno'];
+        $connection = mysqli_connect("localhost", "root", "", "notes_crud") or die("Connection Failed");
+        $query = "DELETE FROM `Notes data` WHERE Sr='$dsrno'";
+        $query_execute = mysqli_query($connection, $query);
+        if ($query_execute) {
+            echo '<div class="container alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Warning!</strong> Your Note was deleted!
+            </div>';
+        }
+    }
     ?>
 </body>
 
