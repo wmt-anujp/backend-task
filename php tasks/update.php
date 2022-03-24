@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <title>Update</title>
+</head>
+
+<body>
+    <div class="container">
+        <h4>Update Your Notes</h4>
+        <form action="show_data.php" method="POST">
+            <div class="form-group mt-3">
+                <label for="title" class="form-label">Notes Title</label>
+                <input type="text" style="width: 350px;" class="form-control" id="title" name="title" maxlength="20" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)" required value="<?php echo $title; ?>">
+            </div>
+            <div class="form-group mt-3">
+                <label for="description" class="form-label">Notes Description</label>
+                <textarea class="form-control" style="width: 350px;" name="description" id="description" cols="30" rows="5" maxlength="254" required value="<?php echo $description; ?>"></textarea>
+            </div>
+            <div class="mt-3">
+                <button type="submit" class="btn btn-success">Update Note</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
