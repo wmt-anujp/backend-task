@@ -20,7 +20,8 @@
         // $count = mysqli_num_rows($query_execute);
         if ($query_execute) {
             echo "<script>alert('Your Notes were added')</script>";
-            sleep(3);
+            // sleep(3);
+            echo "<script>window.location = 'show_data.php'</script>";
             // header("Location:show_data.php");
             // echo '<div class="container alert alert-success alert-dismissible" role="alert">
             // <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -44,13 +45,14 @@
             </div>
             <div class="form-group mt-3">
                 <label for="description" class="form-label">Notes Description</label>
-                <textarea class="form-control" style="width: 350px;" name="description" id="description" cols="30" rows="5" maxlength="254" required></textarea>
+                <textarea class="form-control" style="width: 350px;" name="description" id="description" cols="30" rows="5" required></textarea>
             </div>
             <div class="mt-3">
                 <button type="submit" class="btn btn-success" name="addnote">Add Note</button>
             </div>
         </form>
     </div>
+
 </body>
 
 </html>
