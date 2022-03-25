@@ -14,7 +14,7 @@
     $connection = mysqli_connect("localhost", "root", "", "notes_crud") or die("Connection Failed");
     $query = "SELECT * FROM `Notes data`";
     $query_execute = mysqli_query($connection, $query);
-    $count = mysqli_num_rows($query_execute);
+    // $count = mysqli_num_rows($query_execute);
     echo '<div class="container"><table class="table table-striped table-hover table-bordered my-4">
         <tr style="text-align:center">
             <th class="bg-success">Serial Number</th>
@@ -30,6 +30,7 @@
             <td><a class='btn btn-sm btn-primary' href='update.php?usrno=" . $row['Sr'] . "' style='text-decoration:none'>Update</a>
             <a class='btn btn-sm btn-secondary' href='show_data.php?dsrno=" . $row['Sr'] . "' style='text-decoration:none'>Delete</a></td>
         </tr>";
+        echo $row['Sr'];
         if (isset($_GET['dsrno'])) {
             $dsrno = $_GET['dsrno'];
             $connection = mysqli_connect("localhost", "root", "", "notes_crud") or die("Connection Failed");
@@ -51,8 +52,3 @@
 </body>
 
 </html>
-
-<!-- Date: 24/03/2022
-Project: WMT Training
--learnt how to use mysql with php section.
--implemented the Notes CRUD app for this task. -->

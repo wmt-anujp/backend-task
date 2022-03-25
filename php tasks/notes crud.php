@@ -17,7 +17,6 @@
         $description = $_POST['description'];
         $query = "INSERT INTO `Notes data`(`Title`, `Description`) VALUES ('$title','$description')";
         $query_execute = mysqli_query($connection, $query);
-        // $count = mysqli_num_rows($query_execute);
         if ($query_execute) {
             echo "<script>alert('Your Notes were added')</script>";
             // sleep(3);
