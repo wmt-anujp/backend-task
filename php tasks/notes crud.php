@@ -17,7 +17,7 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $title = $_POST['title'];
         $description = $_POST['description'];
-        $query = "INSERT INTO `Notes data`(`Title`, `Description`) VALUES ('$title','$description')";
+        $query = "INSERT INTO `Notes_data`(`Title`, `Description`) VALUES ('$title','$description')";
         $query_execute = mysqli_query($connection, $query);
         if ($query_execute) {
             echo "<script>alert('Your Notes were added')</script>";

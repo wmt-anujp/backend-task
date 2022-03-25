@@ -13,19 +13,23 @@
     <?php
     session_start();
     include "necessary.php";
-    $usrno = $_GET['usrno'];
+
+    // $usrno = $_SESSION["dsrno"];
     $connection = mysqli_connect("localhost", "root", "", "notes_crud") or die("Connection Failed");
     if (isset($_GET['usrno'])) {
-        $query = "SELECT `Title`, `Description` FROM `Notes data` WHERE Sr=" . $usrno . "";
+        $usrno = $_GET['usrno'];
+        $query = "SELECT `Title`, `Description` FROM `Notes_data` WHERE Sr='$usrno'";
         $query_execute = mysqli_query($connection, $query);
         $row = mysqli_fetch_assoc($query_execute);
+        // print_r($row);
+        // exit();
     }
 
     if (isset($_POST["update"])) {
         $husrno = $_POST["hidden_id"];
         $title = $_POST["Title"];
         $description = $_POST["Description"];
-        $update_query = "UPDATE `Notes data` SET `Title`=" . $title . ",`Description`=" . $description . " WHERE `Sr`=" . $husrno . "";
+        $update_query = "UPDATE `Notes_data` SET `Title`=" . $title . ",`Description`=" . $description . " WHERE `Sr`=" . $husrno . "";
         $update_query_execute = mysqli_query($connection, $update_query);
         if (isset($update_query_execute)) {
             echo "<script>alert('Notes were updated')</script>";

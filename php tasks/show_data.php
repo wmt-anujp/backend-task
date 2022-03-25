@@ -14,7 +14,7 @@
     session_start();
     include "necessary.php";
     $connection = mysqli_connect("localhost", "root", "", "notes_crud") or die("Connection Failed");
-    $query = "SELECT * FROM `Notes data`";
+    $query = "SELECT * FROM `Notes_data`";
     $query_execute1 = mysqli_query($connection, $query);
     echo '<div class="container"><table class="table table-striped table-hover table-bordered my-4">
         <tr style="text-align:center">
@@ -34,7 +34,7 @@
         if (isset($_GET['dsrno'])) {
             $_SESSION["dsrno"] = $_GET['dsrno'];
             $connection = mysqli_connect("localhost", "root", "", "notes_crud") or die("Connection Failed");
-            $query = "DELETE FROM `Notes data` WHERE Sr=" . $_SESSION["dsrno"] . "";
+            $query = "DELETE FROM `Notes_data` WHERE Sr=" . $_SESSION["dsrno"] . "";
             $query_execute2 = mysqli_query($connection, $query);
             if ($query_execute2) {
                 echo '<div class="container alert alert-danger" role="alert">
