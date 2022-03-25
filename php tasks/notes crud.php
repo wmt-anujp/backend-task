@@ -11,6 +11,8 @@
 
 <body>
     <?php
+    session_start();
+    include "necessary.php";
     $connection = mysqli_connect("localhost", "root", "", "notes_crud") or die("Connection Failed");
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $title = $_POST['title'];
@@ -51,7 +53,6 @@
             </div>
         </form>
     </div>
-
 </body>
 
 </html>
