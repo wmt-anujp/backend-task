@@ -71,7 +71,7 @@ ANSWER: SELECT DEPARTMENT,COUNT(WORKER_ID) as No_of_Worker FROM `Worker` GROUP B
 ANSWER: SELECT * FROM `Worker` INNER JOIN Title ON Worker.WORKER_ID=Title.WORKER_REF_ID AND Title.WORKER_TITLE="Manager";
 
 25) Write An SQL Query To Fetch Duplicate Records Having Matching Data In Some Fields Of A Table.
-ANSWER: 
+ANSWER: SELECT SALARY, DEPARTMENT, COUNT(*) FROM Worker GROUP BY SALARY, DEPARTMENT HAVING COUNT(*) > 1;
 
 26) Write An SQL Query To Show Only Odd Rows From A Table.
 ANSWER: SELECT * FROM `Worker` WHERE WORKER_ID%2=1;
@@ -97,7 +97,7 @@ ANSWER: SELECT DISTINCT SALARY FROM Worker LIMIT 10;
 33) Write An SQL Query To Determine The Nth (Say N=5) Highest Salary From A Table.
 ANSWER: SELECT DISTINCT SALARY FROM Worker ORDER BY SALARY DESC LIMIT 5;
 
-34) Write An SQL Query To Determine The 5th Highest Salary Without Using TOP Or Limit Method.
+34) Write An SQL Query To Determine The 5th Highest Salary Without Using TOP or Limit Method.
 ANSWER: 
 
 35) Write An SQL Query To Fetch The List Of Employees With The Same Salary.
