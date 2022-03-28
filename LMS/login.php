@@ -14,9 +14,9 @@
     <script src="validate.js"></script>
     <link rel="stylesheet" href="login.css">
     <title>LMS Login</title>
-    <!-- <script language="javascript" type="text/javascript">
+    <script language="javascript" type="text/javascript">
         window.history.forward();
-    </script> -->
+    </script>
 </head>
 
 <body>
@@ -60,8 +60,8 @@
                             <center><strong>Log-In Unsuccessfull! Please Enter Valid Email or password </strong></center>
                             </div>";
                         }
-                        mysqli_close($conn);
                     }
+                    mysqli_close($conn);
                 }
                 ?>
             </div>
