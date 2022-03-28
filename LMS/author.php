@@ -25,6 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 </head>
 
 <body>
+    <?php
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+    ?>
     <nav class="navbar navbar-expand-lg navbar-light bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand">Library Management System</a>
@@ -37,10 +42,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                         <a class="nav-link" aria-current="page" href="dashboard.php">DASHBOARD</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="book.php">BOOKS</a>
+                        <a class="nav-link active" href="author.php">AUTHORS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="author.php">AUTHORS</a>
+                        <a class="nav-link" href="book.php">BOOKS</a>
                     </li>
                 </ul>
                 <span class="nav-link" style="color: white;" id="navbarDropdown" role="button">Welcome <?php echo ($_SESSION["Username"]); ?></span>
