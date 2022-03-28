@@ -36,13 +36,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                         <a class="nav-link active" aria-current="page" href="dashboard.php">DASHBOARD</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="book.php">BOOKS</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="author.php">AUTHORS</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="book.php">BOOKS</a>
+                    </li>
                 </ul>
-                <a class="nav-link" style="color: white;" id="navbarDropdown" role="button">Welcome <?php echo ($_SESSION["Username"]); ?></a>
+                <span class="nav-link" style="color: white;" id="navbarDropdown" role="button">Welcome <?php echo ($_SESSION["Username"]); ?></span>
                 <a class="btn btn-outline-success" href="logout.php">Log Out</a>
             </div>
         </div>
