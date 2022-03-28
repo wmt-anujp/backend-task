@@ -53,6 +53,7 @@
                         if ($count == 1) {
                             while ($row = mysqli_fetch_assoc($login_query_result)) {
                                 $_SESSION["Email"] = $Email;
+                                $_SESSION["Username"] = $row['UserName'];
                                 header("Location:dashboard.php");
                             }
                         } else {
