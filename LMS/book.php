@@ -62,8 +62,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
     $conn = mysqli_connect("localhost", "root", "", "LMS") or die("Connection Failed");
-    $book_display_query = "";
-    // $book_display_query_execute = mysqli_query($conn, $book_display_query);
     ?>
     <div class="container my-4">
         <table class="table table-hover table-bordered" id="displaytable">
@@ -81,7 +79,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     <th scope="col">Action</th>
                 </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+                <?php
+                $id = 1;
+                $book_status_display = "";
+                $book_display_query = "SELECT * FROM `book`";
+                $book_display_query_execute = mysqli_query($conn, $book_display_query);
+                while ($book_rows = mysqli_fetch_array($book_display_query_execute)) {
+                    if ($book_rows["Status"] == 1) {
+                        $book_status_display = "Available";
+                    } else {
+                        $book_status_display = "Unavailable";
+                    }
+                    echo "<tr style='text-align: center;'>
+                    <td>" . $id . "</td>
+                    <td>" . $book_rows["Title"] . "</td>
+                    <td>" . $book_rows["Pages"] . "</td>
+                    <td>" . $book_rows["Language"] . "</td>
+                    <td>" . $book_rows["Author"] . "</td>
+                    <td>" . $book_rows["Cover_Image"] . "</td>
+                    <td>" . $book_rows["ISBN_No."] . "</td>
+                    <td>" . $book_rows["Price"] . "</td>
+                    <td>" . $book_rows["Description"] . "</td>
+                    <td>" . $book_status_display . "</td>
+                    <td>
+                        <a class='btn btn-success' href='authorupdate.php'>Update</a>
+                        <a class='btn btn-danger' href='delete.php'>Delete</a>
+                    </td></tr>";
+                    $id++;
+                }
+                ?>
+            </tbody>
         </table>
     </div>
     <script>
@@ -92,3 +120,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 </body>
 
 </html>
+
+Date:29/03/2022
+Project: WMT Training
+-continue implementation of LMS
+--implemented the List Author,Add Author with validation, List Book, Add Book With Validation

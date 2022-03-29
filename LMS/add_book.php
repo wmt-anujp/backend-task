@@ -46,7 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             } else {
                 $bookstatus = 0;
             }
-            // print_r($image);
             $filename = $image["name"];
             $fileerror = $image["error"];
             $filetmp = $image['tmp_name'];
@@ -58,11 +57,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 move_uploaded_file($filetmp, $filedestination);
             }
             exit();
-            // $fileextension =
 
 
-
-            $add_book_query = "";
+            $add_book_query = "INSERT INTO `book`(`Title`, `Pages`, `Language`, `Author`, `Cover_Image`, `ISBN_No.`, `Price`, `Description`, `Status`) VALUES ('$title','','$pages','$language','$author','$filedestination','$isbn','$price','$description','$bookstatus')";
             $add_book_query_result = mysqli_query($conn, $add_book_query);
             if ($add_book_query_result) {
                 echo "<script>alert('Book was added')</script>";
