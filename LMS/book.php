@@ -4,7 +4,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (!isset($_SESSION['logged'])) {
         header('Location:login.php');
     }
-    $conn = mysqli_connect("localhost", "root", "", "LMS") or die("Connection Failed");
 }
 ?>
 <!doctype html>
@@ -54,6 +53,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             </div>
         </div>
     </nav>
+    <div class="container m-4">
+        <a class="btn btn-success" href="add_book.php">Add Book <i class="bi bi-plus-circle"></i></a>
+    </div>
+
+    <?php
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+    $conn = mysqli_connect("localhost", "root", "", "LMS") or die("Connection Failed");
+    $book_display_query = "";
+    // $book_display_query_execute = mysqli_query($conn, $book_display_query);
+    ?>
+    <div class="container my-4">
+        <table class="table table-hover table-bordered" id="displaytable">
+            <thead class="table-dark">
+                <tr style="text-align:center">
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Pages</th>
+                    <th scope="col">Language</th>
+                    <th scope="col">Book Author</th>
+                    <th scope="col">Cover Image</th>
+                    <th scope="col">ISBN No.</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
     <script>
         $(document).ready(function() {
             $('#displaytable').DataTable();

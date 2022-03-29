@@ -27,29 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
     $conn = mysqli_connect("localhost", "root", "", "LMS") or die("Connection Failed");
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $fname = $_POST["fname"];
-        $lname = $_POST["lname"];
-        $dob = $_POST["dob"];
-        $gender = $_POST["gender"];
-        $address = $_POST["address"];
-        $mno = $_POST["mno"];
-        $description = $_POST["description"];
-        $status = $_POST["available"];
-        if ($status == "on") {
-            $status = 1;
-        } else {
-            $status = 0;
-        }
-        $query = "INSERT INTO `author`(`First_Name`, `Last_Name`, `DOB`, `Gender`, `Address`, `Mobile`, `Description`, `Status`) VALUES ('$fname','$lname','$dob','$gender','$address','$mno','$description','$status')";
-        $query_execute_result = mysqli_query($conn, $query);
-        if ($query_execute_result) {
-            echo "<script>alert('Author was added')</script>";
-            echo "<script>window.location='author.php'</script>";
-        } else {
-            echo "<script>alert('Author was not added')</script>";
-        }
-    }
     ?>
     <nav class="navbar navbar-expand-lg navbar-light bg-dark">
         <div class="container-fluid">
@@ -63,10 +40,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                         <a class="nav-link" aria-current="page" href="dashboard.php">DASHBOARD</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="author.php">AUTHORS</a>
+                        <a class="nav-link" href="author.php">AUTHORS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="book.php">BOOKS</a>
+                        <a class="nav-link active" href="book.php">BOOKS</a>
                     </li>
                 </ul>
                 <span class="nav-link" style="color: white;" id="navbarDropdown" role="button">Welcome <?php echo ($_SESSION["Username"]); ?></span>
@@ -75,40 +52,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         </div>
     </nav>
     <div class="container mt-4">
-        <form method="POST" id="addauthorform">
+        <form method="POST" id="addbookform">
             <div class="mb-3">
-                <label for="fname" class="form-label">First Name</label>
-                <input type="text" class="form-control" id="fname" name="fname" maxlength="15" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)" required>
+                <label for="title" class="form-label">Title of Book</label>
+                <input type="text" class="form-control" id="title" name="title" maxlength="80" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode>47 && event.charCode<58) || (event.charCode==32)" required>
             </div>
             <div class="mb-3">
-                <label for="lname" class="form-label">Last Name</label>
-                <input type="text" class="form-control" id="lname" name="lname" maxlength="15" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)" required>
+                <label for="pages" class="form-label">Pages of Book</label>
+                <input type="text" class="form-control" id="pages" name="pages" maxlength="4" onkeypress="return (event.charCode>47 && event.charCode<58) || (event.charCode==32)" required>
             </div>
             <div class="mb-3">
-                <label for="dob" class="form-label">Date</label>
-                <input type="date" class="form-control" id="dob" name="dob" required>
+                <label for="language" class="form-label">Language of Book</label>
+                <input type="text" class="form-control" id="language" name="language" maxlength="4" onkeypress="return (event.charCode>47 && event.charCode<58) || (event.charCode==32)" required>
             </div>
             <div class="mb-3">
-                <label for="gender" class="me-3">Gender</label>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="gender" id="mgender" value="Male" required>
-                    <label class="form-check-label" for="mgender">Male</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="gender" id="fgender" value="Female">
-                    <label class="form-check-label" for="fgender">Female</label>
-                </div>
+                <label for="bookauthor" class="form-label">Author of Book</label>
             </div>
             <div class="mb-3">
-                <label for="address" class="form-label">Address</label>
-                <textarea class="form-control" name="address" id="address" maxlength="100" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32) || (event.charCode>47) && (event.charCode<58)" required></textarea>
+                <label for="coverimg" class="form-label">Cover Image of Book</label>
+                <input type="file" class="form-control" placeholder="Upload Image of Book" name="coverimg" id="coverimg" required>
             </div>
             <div class="mb-3">
-                <label for="mno" class="form-label">Mobile Number</label>
-                <input type="text" class="form-control" id="mno" name="mno" maxlength="10" onkeypress="return (event.charCode > 48 && event.charCode < 58)" required>
+                <label for="isbn" class="form-label">ISBN Number of Book</label>
+                <input type="text" class="form-control" id="mno" name="mno" maxlength="15" onkeypress="return (event.charCode > 48 && event.charCode < 58)" required>
             </div>
             <div class="mb-3">
-                <label for="description" class="form-label">Description</label>
+                <label for="description" class="form-label">Description of Book</label>
                 <input type="text" class="form-control" id="description" name="description" maxlength="500" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)" required>
             </div>
             <div class="mb-3">
@@ -124,11 +93,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 </div>
             </div>
             <div class="mb-3">
-                <button type="submit" class="btn btn-success" name="addauthor">Add Author</button>
+                <button type="submit" class="btn btn-success " name="addauthor">Add Book</button>
             </div>
         </form>
     </div>
-
 </body>
 
 </html>
