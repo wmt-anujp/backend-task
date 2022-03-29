@@ -4,7 +4,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (!isset($_SESSION['logged'])) {
         header('Location:login.php');
     }
-    $conn = mysqli_connect("localhost", "root", "", "LMS") or die("Connection Failed");
 }
 ?>
 <!doctype html>
@@ -15,18 +14,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 
     <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <!-- <script language="javascript" type="text/javascript">
         window.history.forward();
-        $(window).blur(function() {
-            alert('You are not allowed to leave page');
-        });
     </script> -->
     <title>Author's Page</title>
 </head>
@@ -36,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
+    $conn = mysqli_connect("localhost", "root", "", "LMS") or die("Connection Failed");
     ?>
     <nav class="navbar navbar-expand-lg navbar-light bg-dark">
         <div class="container-fluid">
@@ -61,10 +60,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         </div>
     </nav>
     <div class="container m-4">
-        <a class="btn btn-success" href="add_author.php"> Add Author <i class="bi bi-plus-circle"></i></a>
+        <a class="btn btn-success" href="add_author.php">Add Author <i class="bi bi-plus-circle"></i></a>
     </div>
+
     <div class="container my-4">
-        <table class="table table-striped table-hover table-bordered" id="myTable">
+        <table class="table table-hover table-bordered" id="displaytable">
             <thead class="table-dark">
                 <tr style="text-align:center">
                     <th scope="col">ID</th>
@@ -80,15 +80,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             </thead>
             <tbody>
                 <?php
-                $query = "SELECT * FROM `author` WHERE `ID`='$row[ID]'";
+                $author_display_query = "SELECT `ID`,concat(`First_Name`,' ',`Last_Name`) as Name, `DOB`, `Gender`, `Address`, `Mobile`, `Description`, `Status` FROM `author`";
+                $author_display_query_execute = mysqli_query($conn, $author_display_query);
+                $count = mysqli_num_rows($author_display_query_execute);
+                $id = 1;
+                $status_display = "";
+                while ($rows = mysqli_fetch_array($author_display_query_execute)) {
+                    if ($rows["Status"] == 1) {
+                        $status_display = "Available";
+                    } else {
+                        $status_display = "Unavailable";
+                    }
+                    echo "<tr style='text-align: center;'>
+                    <td>" . $id . "</td>
+                    <td>" . $rows["Name"] . "</td>
+                    <td>" . $rows["DOB"] . "</td>
+                    <td>" . $rows["Gender"] . "</td>
+                    <td>" . $rows["Address"] . "</td>
+                    <td>" . $rows["Mobile"] . "</td>
+                    <td>" . $rows["Description"] . "</td>
+                    <td>" . $status_display . "</td>
+                    <td>
+                        <a class='btn btn-success' href='authorupdate.php'>Update</a>
+                        <a class='btn btn-danger' href='delete.php'>Delete</a>
+                    </td></tr>";
+                    $id++;
+                    print_r($rows['ID'] . "<br>");
+                }
                 ?>
-                <tr style="text-align: center;"><?php echo ("Anuj"); ?></tr>
             </tbody>
         </table>
     </div>
     <script>
         $(document).ready(function() {
-            $('#myTable').DataTable();
+            $('#displaytable').DataTable();
         });
     </script>
 </body>

@@ -1,6 +1,6 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-
+    session_start();
     if (!isset($_SESSION['logged'])) {
         header('Location:login.php');
     }
@@ -26,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
-    session_start();
     $conn = mysqli_connect("localhost", "root", "", "LMS") or die("Connection Failed");
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $fname = $_POST["fname"];
@@ -37,6 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $mno = $_POST["mno"];
         $description = $_POST["description"];
         $status = $_POST["available"];
+        if ($status == "on") {
+            $status = 1;
+        } else {
+            $status = 0;
+        }
         $query = "INSERT INTO `author`(`First_Name`, `Last_Name`, `DOB`, `Gender`, `Address`, `Mobile`, `Description`, `Status`) VALUES ('$fname','$lname','$dob','$gender','$address','$mno','$description','$status')";
         $query_execute_result = mysqli_query($conn, $query);
         if ($query_execute_result) {
