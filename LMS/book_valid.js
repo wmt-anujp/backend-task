@@ -8,20 +8,20 @@ $(document).ready(function () {
         required: true,
         number: true,
       },
-      lang: {
+      language: {
         required: true,
       },
-      author: {
+      bookauthor: {
         required: true,
       },
-      img: {
+      coverimg: {
         required: true,
       },
       isbn: {
         required: true,
         maxlength: 13,
       },
-      desc: {
+      description: {
         required: true,
       },
       price: {
@@ -37,20 +37,20 @@ $(document).ready(function () {
         required: "Please Enter Number of Pages in Book",
         number: "Pages Should be in numbers only",
       },
-      lang: {
+      language: {
         required: "Please Enter Book Language",
       },
-      author: {
+      bookauthor: {
         required: "Please select Author Name of Book",
       },
-      img: {
+      coverimg: {
         required: "Please Select Cover Image of Book",
       },
       isbn: {
         required: "Please Enter ISBN Number of Book",
         maxlength: "Length of ISBN number should be 13 digit",
       },
-      desc: {
+      description: {
         required: "Please Enter Description of Book",
       },
       price: {

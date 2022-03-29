@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-    <script src="author_valid.js"></script>
+    <script src="book_valid.js"></script>
     <title>Adding Author Page</title>
 </head>
 
@@ -27,7 +27,53 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
     $conn = mysqli_connect("localhost", "root", "", "LMS") or die("Connection Failed");
+    $display_author_query = "SELECT `ID`, concat(`First_Name`,' ',`Last_Name`) as Name FROM `author`";
+    $display_author_query_execute = mysqli_query($conn, $display_author_query);
+    $bookstatus = "";
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (isset($_POST["addbook"])) {
+            $title = $_POST["title"];
+            $pages = $_POST["pages"];
+            $language = $_POST["language"];
+            $author = $_POST["bookauthor"];
+            $image = $_FILES['coverimg'];
+            $isbn = $_POST["isbn"];
+            $price = $_POST["price"];
+            $description = $_POST["description"];
+            $bookstatus = $_POST["available"];
+            if ($bookstatus == "on") {
+                $bookstatus = 1;
+            } else {
+                $bookstatus = 0;
+            }
+            // print_r($image);
+            $filename = $image["name"];
+            $fileerror = $image["error"];
+            $filetmp = $image['tmp_name'];
+            $fileextension = explode(".", $filename);
+            $fileextension_check = strtolower(end($fileextension));
+            $fileextension_stored = array("png", "jpg", "jpeg");
+            if (in_array($fileextension_check, $fileextension_stored)) {
+                $filedestination = "upload/" . $filename;
+                move_uploaded_file($filetmp, $filedestination);
+            }
+            exit();
+            // $fileextension =
+
+
+
+            $add_book_query = "";
+            $add_book_query_result = mysqli_query($conn, $add_book_query);
+            if ($add_book_query_result) {
+                echo "<script>alert('Book was added')</script>";
+                echo "<script>window.location='book.php'</script>";
+            } else {
+                echo "<script>alert('Book was not added')</script>";
+            }
+        }
+    }
     ?>
+    <!-- HTML start -->
     <nav class="navbar navbar-expand-lg navbar-light bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand">Library Management System</a>
@@ -46,13 +92,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                         <a class="nav-link active" href="book.php">BOOKS</a>
                     </li>
                 </ul>
-                <span class="nav-link" style="color: white;" id="navbarDropdown" role="button">Welcome <?php echo ($_SESSION["Username"]); ?></span>
+                <span class="nav-link" style="color: white;" id="navbarDropdown">Welcome <?php echo ($_SESSION["Username"]); ?></span>
                 <a class="btn btn-outline-success" href="logout.php">Log Out</a>
             </div>
         </div>
     </nav>
     <div class="container mt-4">
-        <form method="POST" id="addbookform">
+        <form method="POST" id="addbookform" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="title" class="form-label">Title of Book</label>
                 <input type="text" class="form-control" id="title" name="title" maxlength="80" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode>47 && event.charCode<58) || (event.charCode==32)" required>
@@ -63,10 +109,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             </div>
             <div class="mb-3">
                 <label for="language" class="form-label">Language of Book</label>
-                <input type="text" class="form-control" id="language" name="language" maxlength="4" onkeypress="return (event.charCode>47 && event.charCode<58) || (event.charCode==32)" required>
+                <input type="text" class="form-control" id="language" name="language" maxlength="10" onkeypress="return (event.charCode>64 && event.charCode<91) || (event.charCode>96 && event.charCode<123) || (event.charCode==32)" required>
             </div>
             <div class="mb-3">
                 <label for="bookauthor" class="form-label">Author of Book</label>
+                <select class="form-select" name="bookauthor" id="bookauthor">
+                    <option>Select the Author</option>
+                    <?php
+                    while ($display_author_row = mysqli_fetch_array($display_author_query_execute)) {
+                        echo "<option value='$display_author_row[0]'>" . $display_author_row[1] . "</option>";
+                    }
+                    ?>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="coverimg" class="form-label">Cover Image of Book</label>
@@ -74,11 +128,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             </div>
             <div class="mb-3">
                 <label for="isbn" class="form-label">ISBN Number of Book</label>
-                <input type="text" class="form-control" id="mno" name="mno" maxlength="15" onkeypress="return (event.charCode > 48 && event.charCode < 58)" required>
+                <input type="text" class="form-control" id="isbn" name="isbn" maxlength="15" onkeypress="return (event.charCode > 48 && event.charCode < 58)" required>
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Price of Book</label>
+                <input type="text" class="form-control" id="price" name="price" maxlength="5" onkeypress="return (event.charCode > 48 && event.charCode < 58)" required>
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description of Book</label>
-                <input type="text" class="form-control" id="description" name="description" maxlength="500" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)" required>
+                <textarea class="form-control" name="description" id="description" maxlength="500" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32) || (event.charCode>47) && (event.charCode<58)" required></textarea>
             </div>
             <div class="mb-3">
                 <div class="row">
@@ -93,10 +151,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 </div>
             </div>
             <div class="mb-3">
-                <button type="submit" class="btn btn-success " name="addauthor">Add Book</button>
+                <button type="submit" class="btn btn-success " name="addbook">Add Book</button>
             </div>
         </form>
     </div>
+    <!-- HTML Ends -->
 </body>
 
 </html>

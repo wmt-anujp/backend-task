@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         <a class="btn btn-success" href="add_author.php">Add Author <i class="bi bi-plus-circle"></i></a>
     </div>
 
-    <div class="container my-4">
+    <div class="container my-4 table-responsive">
         <table class="table table-hover table-bordered" id="displaytable">
             <thead class="table-dark">
                 <tr style="text-align:center">
