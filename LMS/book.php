@@ -63,17 +63,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     error_reporting(E_ALL);
     $conn = mysqli_connect("localhost", "root", "", "LMS") or die("Connection Failed");
     ?>
-    <div class="container my-4">
+    <div class="container-fluid my-4 table-responsive">
         <table class="table table-hover table-bordered" id="displaytable">
             <thead class="table-dark">
                 <tr style="text-align:center">
-                    <th scope="col">ID</th>
+                    <th scope="col">Sr.</th>
                     <th scope="col">Title</th>
-                    <th scope="col">Pages</th>
                     <th scope="col">Language</th>
                     <th scope="col">Book Author</th>
                     <th scope="col">Cover Image</th>
-                    <th scope="col">ISBN No.</th>
+                    <th scope="col">Price</th>
                     <th scope="col">Description</th>
                     <th scope="col">Status</th>
                     <th scope="col">Action</th>
@@ -94,21 +93,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     echo "<tr style='text-align: center;'>
                     <td>" . $id . "</td>
                     <td>" . $book_rows["Title"] . "</td>
-                    <td>" . $book_rows["Pages"] . "</td>
                     <td>" . $book_rows["Language"] . "</td>
                     <td>" . $book_rows["Author"] . "</td>
-                    <td>" . $book_rows["Cover_Image"] . "</td>
-                    <td>" . $book_rows["ISBN_No."] . "</td>
+                    <td><img src=" . $book_rows['Cover_Image'] . " height='100px' width='170px' alt='ss.jpg'></td>
                     <td>" . $book_rows["Price"] . "</td>
                     <td>" . $book_rows["Description"] . "</td>
                     <td>" . $book_status_display . "</td>
                     <td>
-                        <a class='btn btn-success' href='authorupdate.php'>Update</a>
+                        <a class='btn btn-success' href='bookupdate.php'>Update</a>
                         <a class='btn btn-danger' href='delete.php'>Delete</a>
                     </td></tr>";
                     $id++;
                 }
                 ?>
+
             </tbody>
         </table>
     </div>
@@ -120,8 +118,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 </body>
 
 </html>
-
-Date:29/03/2022
-Project: WMT Training
--continue implementation of LMS
---implemented the List Author,Add Author with validation, List Book, Add Book With Validation

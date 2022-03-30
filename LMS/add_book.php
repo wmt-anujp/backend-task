@@ -19,6 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <script src="book_valid.js"></script>
     <title>Adding Author Page</title>
+    <script language="javascript" type="text/javascript">
+        window.history.forward();
+    </script>
 </head>
 
 <body>
@@ -56,10 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 $filedestination = "upload/" . $filename;
                 move_uploaded_file($filetmp, $filedestination);
             }
-            exit();
-
-
-            $add_book_query = "INSERT INTO `book`(`Title`, `Pages`, `Language`, `Author`, `Cover_Image`, `ISBN_No.`, `Price`, `Description`, `Status`) VALUES ('$title','','$pages','$language','$author','$filedestination','$isbn','$price','$description','$bookstatus')";
+            $add_book_query = "INSERT INTO `book`(`Title`, `Pages`, `Language`, `Author`, `Cover_Image`, `ISBN_No.`, `Price`, `Description`, `Status`) VALUES ('$title','$pages','$language','$author','$filedestination','$isbn','$price','$description','$bookstatus')";
             $add_book_query_result = mysqli_query($conn, $add_book_query);
             if ($add_book_query_result) {
                 echo "<script>alert('Book was added')</script>";
@@ -114,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     <option>Select the Author</option>
                     <?php
                     while ($display_author_row = mysqli_fetch_array($display_author_query_execute)) {
-                        echo "<option value='$display_author_row[0]'>" . $display_author_row[1] . "</option>";
+                        echo "<option value='$display_author_row[1]'>" . $display_author_row[1] . "</option>";
                     }
                     ?>
                 </select>

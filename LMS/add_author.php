@@ -19,6 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <script src="author_valid.js"></script>
     <title>Adding Author Page</title>
+    <script language="javascript" type="text/javascript">
+        window.history.forward();
+    </script>
 </head>
 
 <body>
