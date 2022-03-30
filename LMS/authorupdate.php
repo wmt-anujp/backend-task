@@ -88,6 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         </div>
     </nav>
     <div class="container mt-4">
+        <h3 style="color: lightgreen;">Update Author</h3>
         <form method="POST" id="addauthorform" action="authorupdate.php">
             <input type="hidden" name="hidden_id" value="<?php echo $aupid; ?>">
             <div class="mb-3">
