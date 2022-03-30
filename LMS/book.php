@@ -100,8 +100,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     <td>" . $book_rows["Description"] . "</td>
                     <td>" . $book_status_display . "</td>
                     <td>
-                        <a class='btn btn-success' href='bookupdate.php'>Update</a>
-                        <a class='btn btn-danger' href='delete.php'>Delete</a>
+                        <a class='btn btn-success' href='bookupdate.php?bupid=" . $book_rows['ID'] . "''>Update</a>
+                        <a class='btn btn-danger' href='book.php?bdelid=" . $book_rows['ID'] . "'>Delete</a>
                     </td></tr>";
                     $id++;
                 }
