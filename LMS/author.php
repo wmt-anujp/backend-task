@@ -101,8 +101,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     <td>" . $rows["Description"] . "</td>
                     <td>" . $status_display . "</td>
                     <td>
-                        <a class='btn btn-success' href='authorupdate.php'>Update</a>
-                        <a class='btn btn-danger' href='delete.php'>Delete</a>
+                        <a class='btn btn-success' href='authorupdate.php?aupid=" . $rows['ID'] . "'>Update</a>
+                        <a class='btn btn-danger' href='author.php?adelid=" . $rows['ID'] . "'>Delete</a>
                     </td></tr>";
                     $id++;
                     print_r($rows['ID'] . "<br>");
