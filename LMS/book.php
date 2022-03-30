@@ -23,9 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <link rel="stylesheet" href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 
     <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <!-- <script language="javascript" type="text/javascript">
+    <script language="javascript" type="text/javascript">
         window.history.forward();
-    </script> -->
+    </script>
     <title>Book's Page</title>
 </head>
 
@@ -105,8 +105,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     </td></tr>";
                     $id++;
                 }
+                if (isset($_GET["bdelid"])) {
+                    $bdelid = $_GET["bdelid"];
+                    $book_delete_query = "DELETE FROM `book` WHERE `ID`='$bdelid'";
+                    $book_delete_query_result = mysqli_query($conn, $book_delete_query);
+                    if ($book_delete_query_result) {
+                        unlink("upload/" . $_SESSION['filedestination']);
+                        echo '<script>alert("Book was Deleted")</script>';
+                        sleep(1);
+                    } else {
+                        echo "<script>alert('Book was not Deleted')</script>";
+                    }
+                }
                 ?>
-
             </tbody>
         </table>
     </div>

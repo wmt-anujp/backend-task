@@ -105,7 +105,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                         <a class='btn btn-danger' href='author.php?adelid=" . $rows['ID'] . "'>Delete</a>
                     </td></tr>";
                     $id++;
-                    print_r($rows['ID'] . "<br>");
+                    // print_r($rows['ID'] . "<br>");
+                    if (isset($_GET["adelid"])) {
+                        $adelid = $_GET["adelid"];
+                        $author_delete_query = "DELETE FROM `author` WHERE `ID`='$adelid'";
+                        $author_delete_query_result = mysqli_query($conn, $author_delete_query);
+                        if ($author_delete_query_result) {
+                            echo '<script>alert("Author was Deleted")</script>';
+                        } else {
+                            echo '<script>alert("Author was not Deleted")</script>';
+                        }
+                    }
                 }
                 ?>
             </tbody>

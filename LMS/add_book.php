@@ -59,6 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 $filedestination = "upload/" . $filename;
                 move_uploaded_file($filetmp, $filedestination);
             }
+            $_SESSION["filedestination"] = $filedestination;
             $add_book_query = "INSERT INTO `book`(`Title`, `Pages`, `Language`, `Author`, `Cover_Image`, `ISBN_No.`, `Price`, `Description`, `Status`) VALUES ('$title','$pages','$language','$author','$filedestination','$isbn','$price','$description','$bookstatus')";
             $add_book_query_result = mysqli_query($conn, $add_book_query);
             if ($add_book_query_result) {
@@ -133,7 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description of Book</label>
-                <textarea class="form-control" name="description" id="description" maxlength="500" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32) || (event.charCode>47) && (event.charCode<58)" required></textarea>
+                <textarea class="form-control" name="description" id="description" maxlength="500" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32) || (event.charCode>47) && (event.charCode<58) || (event.charCode==46)" required></textarea>
             </div>
             <div class="mb-3">
                 <div class="row">

@@ -24,6 +24,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="book_valid.js"></script>
+    <script language="javascript" type="text/javascript">
+        window.history.forward();
+    </script>
     <title>Book Update Page</title>
 </head>
 
@@ -71,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $filedestination = "upload/" . $filename;
             move_uploaded_file($filetmp, $filedestination);
         }
-        $update_book_query = "UPDATE `book` SET `Title`='$title',`Pages`='$pages',`Language`='$language',`Author`='$author',`Cover_Image`='$image',`ISBN_No.`='$isbn',`Price`='$price',`Description`='$description',`Status`='$bookstatus' WHERE `ID`='$hidden_bupid'";
+        $update_book_query = "UPDATE `book` SET `Title`='$title',`Pages`='$pages',`Language`='$language',`Author`='$author',`Cover_Image`='$filedestination',`ISBN_No.`='$isbn',`Price`='$price',`Description`='$description',`Status`='$bookstatus' WHERE `ID`='$hidden_bupid'";
         $update_book_query_result = mysqli_query($conn, $update_book_query);
         if ($update_book_query_result) {
             echo "<script>alert('Author was updated')</script>";
