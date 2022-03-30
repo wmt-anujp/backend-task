@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 $book_status_display = "";
                 $book_display_query = "SELECT * FROM `book`";
                 $book_display_query_execute = mysqli_query($conn, $book_display_query);
-                while ($book_rows = mysqli_fetch_array($book_display_query_execute)) {
+                while ($book_rows = mysqli_fetch_assoc($book_display_query_execute)) {
                     if ($book_rows["Status"] == 1) {
                         $book_status_display = "Available";
                     } else {
@@ -121,6 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             </tbody>
         </table>
     </div>
+    <!-- <a class='btn btn-primary' href='bookdetail.php?bid=" . $book_rows[' ID'] . "'>View Details of book</a> -->
     <script>
         $(document).ready(function() {
             $('#displaytable').DataTable();

@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 $count = mysqli_num_rows($author_display_query_execute);
                 $id = 1;
                 $status_display = "";
-                while ($rows = mysqli_fetch_array($author_display_query_execute)) {
+                while ($rows = mysqli_fetch_assoc($author_display_query_execute)) {
                     if ($rows["Status"] == 1) {
                         $status_display = "Available";
                     } else {
