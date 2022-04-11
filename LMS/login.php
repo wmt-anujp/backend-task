@@ -26,11 +26,11 @@
             <div class=" txt_field">
                 <input type="text" name="Email" maxlength="20" onkeypress="return (event.charCode > 63 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32) || (event.charCode>45 && event.charCode<58)" required placeholder="Email">
                 <span></span>
-                <!-- <label>Email<span style="color: red;"> *<?php echo $email_errormsg; ?></span></label> -->
+                <!-- <label>Email<span style="color: red;"> *</span></label> -->
             </div>
 
             <div class="txt_field">
-                <input type="password" name="pw" maxlength="16" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32) || (event.charCode>47 && event.charCode<58)" required placeholder="Password">
+                <input type="password" name="pw" maxlength="16" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32) || (event.charCode>47 && event.charCode<58) || (event.charCode==13)" required placeholder="Password">
                 <span></span>
                 <!-- <label>Password<span style="color: red;"> *</span></label> -->
             </div>

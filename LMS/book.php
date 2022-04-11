@@ -24,12 +24,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script language="javascript" type="text/javascript">
-        window.history.forward();
+        // window.history.forward();
     </script>
     <title>Book's Page</title>
 </head>
 
 <body>
+    <!-- navbar starts -->
     <nav class="navbar navbar-expand-lg navbar-light bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand">Library Management System</a>
@@ -53,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             </div>
         </div>
     </nav>
+    <!-- navbar ends -->
     <div class="container m-4">
         <a class="btn btn-success" href="add_book.php">Add Book <i class="bi bi-plus-circle"></i></a>
     </div>
@@ -85,6 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 $book_display_query = "SELECT * FROM `book`";
                 $book_display_query_execute = mysqli_query($conn, $book_display_query);
                 while ($book_rows = mysqli_fetch_assoc($book_display_query_execute)) {
+                    $_SESSION["book_title"] = $book_rows['Title'];
                     if ($book_rows["Status"] == 1) {
                         $book_status_display = "Available";
                     } else {
@@ -95,33 +98,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     <td>" . $book_rows["Title"] . "</td>
                     <td>" . $book_rows["Language"] . "</td>
                     <td>" . $book_rows["Author"] . "</td>
-                    <td><img src=" . $book_rows['Cover_Image'] . " height='100px' width='170px' alt='ss.jpg'></td>
+                    <td><img src=" . $book_rows['Cover_Image'] . " height='100px' width='170px' alt='some.jpg'></td>
                     <td>" . $book_rows["Price"] . "</td>
                     <td>" . $book_rows["Description"] . "</td>
-                    <td>" . $book_status_display . "</td>
+                    <td>" . $book_status_display . "</td>"; ?>
                     <td>
-                        <a class='btn btn-success' href='bookupdate.php?bupid=" . $book_rows['ID'] . "''>Update</a>
-                        <a class='btn btn-danger' href='book.php?bdelid=" . $book_rows['ID'] . "'>Delete</a>
-                    </td></tr>";
+                        <a class='btn btn-success' href='bookupdate.php?bupid=<?php echo $book_rows['ID'] ?>'>Update</a>
+                        <a class='btn btn-danger mx-2' href='book.php?bdelid=<?php echo $book_rows['ID'] ?>'>Delete</a>
+                        <a class='btn btn-primary my-3' href='bookdetail.php?bid=<?php echo $book_rows['ID'] ?>'>View Details of book</a>
+                    </td>
+                    </tr>
+                <?php
                     $id++;
                 }
+                // delete part starts
                 if (isset($_GET["bdelid"])) {
                     $bdelid = $_GET["bdelid"];
                     $book_delete_query = "DELETE FROM `book` WHERE `ID`='$bdelid'";
                     $book_delete_query_result = mysqli_query($conn, $book_delete_query);
                     if ($book_delete_query_result) {
-                        unlink("upload/" . $_SESSION['filedestination']);
+                        // unlink("upload/" . $_SESSION['filedestination']);
                         echo '<script>alert("Book was Deleted")</script>';
-                        sleep(1);
+                        echo "<script>window.location='book.php'</script>";
                     } else {
                         echo "<script>alert('Book was not Deleted')</script>";
                     }
                 }
+                // delete part ended
                 ?>
             </tbody>
         </table>
     </div>
-    <!-- <a class='btn btn-primary' href='bookdetail.php?bid=" . $book_rows[' ID'] . "'>View Details of book</a> -->
+
     <script>
         $(document).ready(function() {
             $('#displaytable').DataTable();

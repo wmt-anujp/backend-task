@@ -112,6 +112,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                         $author_delete_query_result = mysqli_query($conn, $author_delete_query);
                         if ($author_delete_query_result) {
                             echo '<script>alert("Author was Deleted")</script>';
+                            echo "<script>window.location='author.php'</script>";
                         } else {
                             echo '<script>alert("Author was not Deleted")</script>';
                         }

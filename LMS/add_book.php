@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <script src="book_valid.js"></script>
     <title>Adding Author Page</title>
     <script language="javascript" type="text/javascript">
-        window.history.forward();
+        // window.history.forward();
     </script>
 </head>
 
@@ -57,6 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $fileextension_stored = array("png", "jpg", "jpeg");
             if (in_array($fileextension_check, $fileextension_stored)) {
                 $filedestination = "upload/" . $filename;
+                $_SESSION["filedestination"] = $filedestination;
                 move_uploaded_file($filetmp, $filedestination);
             }
             $_SESSION["filedestination"] = $filedestination;

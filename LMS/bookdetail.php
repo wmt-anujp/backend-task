@@ -53,3 +53,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             </div>
         </div>
     </nav>
+    <?php
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+    $conn = mysqli_connect("localhost", "root", "", "LMS") or die("Connection Failed");
+    if (isset($_GET["bid"])) {
+        $book_id = $_GET["bid"];
+        $bdetails_query = "SELECT * FROM `book` WHERE `ID`=$book_id";
+        $bdetails_query_execute = mysqli_query($conn, $bdetails_query);
+        $bdetails_query_rows = mysqli_fetch_array($bdetails_query_execute);
+        if ($bdetails_query_rows['9'] == 1) {
+            $bdetails_query_rows['9'] = "Available";
+        } else {
+            $bdetails_query_rows['9'] = "Unavailable";
+        }
+    }
+    ?>
+    <div class="container m-5">
+        <h2 style="color: lightgreen;text-decoration: underline;" class="my-4">Details of <?php echo $bdetails_query_rows['1']; ?> Book</h2>
+        <p>Title of Book is: <?php echo $bdetails_query_rows['1']; ?></p>
+        <p>Pages of the books are: <?php echo $bdetails_query_rows['2']; ?></p>
+        <p>Language of the book is: <?php echo $bdetails_query_rows['3']; ?></p>
+        <p>Author of the book is: <?php echo $bdetails_query_rows['4']; ?></p>
+        <p>Cover Image of the book is: <img class="mx-3" src="<?php echo $bdetails_query_rows['5']; ?>" height='100px' width='170px' alt="some.jpg"></p>
+        <p>ISBN Number of the book is: <?php echo $bdetails_query_rows['6']; ?></p>
+        <p>Price of the book is: <?php echo $bdetails_query_rows['7']; ?></p>
+        <p>Description of the book is: <?php echo $bdetails_query_rows['8']; ?></p>
+        <p>Status of the book is: <?php echo $bdetails_query_rows['9']; ?></p>
+    </div>
+</body>
+
+</html>

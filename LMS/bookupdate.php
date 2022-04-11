@@ -84,6 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         }
     }
     ?>
+    <!-- php ends -->
     <!-- HTML Starts -->
     <nav class="navbar navbar-expand-lg navbar-light bg-dark">
         <div class="container-fluid">
