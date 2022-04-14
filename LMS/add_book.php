@@ -22,6 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <script language="javascript" type="text/javascript">
         // window.history.forward();
     </script>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
 </head>
 
 <body>
@@ -108,11 +113,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             </div>
             <div class="mb-3">
                 <label for="language" class="form-label">Language of Book</label>
-                <input type="text" class="form-control" id="language" name="language" maxlength="10" onkeypress="return (event.charCode>64 && event.charCode<91) || (event.charCode>96 && event.charCode<123) || (event.charCode==32)" required>
+                <input type="text" class="form-control" id="language" name="language" maxlength="25" onkeypress="return (event.charCode>64 && event.charCode<91) || (event.charCode>96 && event.charCode<123) || (event.charCode==32) || (event.charCode==44)" required>
             </div>
             <div class="mb-3">
                 <label for="bookauthor" class="form-label">Author of Book</label>
-                <select class="form-select" name="bookauthor" id="bookauthor">
+                <select class="form-select" name="bookauthor" id="bookauthor" multiple required>
                     <option>Select the Author</option>
                     <?php
                     while ($display_author_row = mysqli_fetch_array($display_author_query_execute)) {

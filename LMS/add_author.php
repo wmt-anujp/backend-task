@@ -22,6 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <script language="javascript" type="text/javascript">
         window.history.forward();
     </script>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
 </head>
 
 <body>

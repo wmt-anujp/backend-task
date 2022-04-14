@@ -13,11 +13,11 @@ $(document).ready(function () {
     messages: {
       Email: {
         required: "Please Enter Email ID.",
-        email: "There should be @,.,numerics in the email id!",
+        email: "There should be @,.,numerics in email id!",
       },
       pw: {
         required: "Please enter Password.",
-        minlength: "Password must be at least 8 characters long.",
+        minlength: "At least 8 character required!",
       },
     },
     submitHandler: function (form) {
