@@ -63,9 +63,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             if (in_array($fileextension_check, $fileextension_stored)) {
                 $filedestination = "upload/" . $filename;
                 $_SESSION["filedestination"] = $filedestination;
+                // echo $_SESSION["filedestination"];
+                // exit();
                 move_uploaded_file($filetmp, $filedestination);
             }
-            $_SESSION["filedestination"] = $filedestination;
             $add_book_query = "INSERT INTO `book`(`Title`, `Pages`, `Language`, `Author`, `Cover_Image`, `ISBN_No.`, `Price`, `Description`, `Status`) VALUES ('$title','$pages','$language','$author','$filedestination','$isbn','$price','$description','$bookstatus')";
             $add_book_query_result = mysqli_query($conn, $add_book_query);
             if ($add_book_query_result) {

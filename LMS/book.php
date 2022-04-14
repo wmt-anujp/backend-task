@@ -88,6 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 $book_display_query_execute = mysqli_query($conn, $book_display_query);
                 while ($book_rows = mysqli_fetch_assoc($book_display_query_execute)) {
                     $_SESSION["book_title"] = $book_rows['Title'];
+                    $fileName = $book_rows['Cover_Image'];
                     if ($book_rows["Status"] == 1) {
                         $book_status_display = "Available";
                     } else {
@@ -114,12 +115,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 // delete part starts
                 if (isset($_GET["bdelid"])) {
                     $bdelid = $_GET["bdelid"];
+                    $imageurl = $_DIR_ . '../LMS/' . $fileName;
                     $book_delete_query = "DELETE FROM `book` WHERE `ID`='$bdelid'";
                     $book_delete_query_result = mysqli_query($conn, $book_delete_query);
-                    if ($book_delete_query_result) {
-                        // unlink("upload/" . $_SESSION['filedestination']);
-                        echo '<script>alert("Book was Deleted")</script>';
-                        echo "<script>window.location='book.php'</script>";
+                    $filedest = $_SESSION["filedestination"];
+                    if (file_exists($imageurl)) {
+                        unlink($imageurl);
+                        if ($book_delete_query_result) {
+                            echo '<script>alert("Book was Deleted")</script>';
+                            echo "<script>window.location='book.php'</script>";
+                        }
                     } else {
                         echo "<script>alert('Book was not Deleted')</script>";
                     }
