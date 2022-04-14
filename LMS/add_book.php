@@ -44,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             $pages = $_POST["pages"];
             $language = $_POST["language"];
             $author = $_POST["bookauthor"];
+            $author = implode(", ", $author);
             $image = $_FILES['coverimg'];
             $isbn = $_POST["isbn"];
             $price = $_POST["price"];
@@ -118,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             </div>
             <div class="mb-3">
                 <label for="bookauthor" class="form-label">Author of Book</label>
-                <select class="form-select" name="bookauthor" id="bookauthor" multiple required>
+                <select class="form-select" name="bookauthor[]" id="bookauthor" multiple required>
                     <option>Select the Author</option>
                     <?php
                     while ($display_author_row = mysqli_fetch_array($display_author_query_execute)) {
