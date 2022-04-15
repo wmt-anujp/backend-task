@@ -98,7 +98,7 @@ ANSWER: SELECT DISTINCT SALARY FROM Worker LIMIT 10;
 ANSWER: SELECT DISTINCT SALARY FROM Worker ORDER BY SALARY DESC LIMIT 5;
 
 34) Write An SQL Query To Determine The 5th Highest Salary Without Using TOP or Limit Method.
-ANSWER: 
+ANSWER: SELECT * FROM Worker Worker1 WHERE 6-1 = (SELECT COUNT(DISTINCT Worker2.salary ) FROM Worker Worker2 WHERE Worker2.salary >= Worker1.salary);
 
 35) Write An SQL Query To Fetch The List Of Employees With The Same Salary.
 ANSWER: SELECT Worker.FIRST_NAME,Worker.LAST_NAME,Worker.SALARY FROM `Worker` INNER JOIN clone_table on Worker.SALARY=clone_table.SALARY AND Worker.FIRST_NAME!=clone_table.FIRST_NAME;
@@ -107,13 +107,13 @@ ANSWER: SELECT Worker.FIRST_NAME,Worker.LAST_NAME,Worker.SALARY FROM `Worker` IN
 ANSWER: SELECT DISTINCT SALARY from Worker ORDER by SALARY DESC LIMIT 1 OFFSET 1;
 
 37) Write An SQL Query To Show One Row Twice In Results From A Table.
-ANSWER: 
+ANSWER: SELECT * FROM `Worker` UNION all SELECT * FROM Worker ORDER BY SALARY;
 
 38) Write An SQL Query To Fetch Intersecting Records Of Two Tables.
 ANSWER: SELECT WORKER_ID FROM `Worker` INNER JOIN Title ON Worker.WORKER_ID=Title.WORKER_REF_ID;
 
 39) Write An SQL Query To Fetch The First 50% Records From A Table.
-ANSWER: SELECT * FROM Worker WHERE COUNT(WORKER_ID)/2
+ANSWER: SELECT * FROM Worker WHERE WORKER_ID <=(SELECT COUNT(WORKER_ID)/2 FROM Worker);
 
 40) Write An SQL Query To Fetch The Departments That Have Less Than Five People In It.
 ANSWER: SELECT DEPARTMENT FROM Worker GROUP by DEPARTMENT HAVING COUNT(WORKER_ID)<5;
@@ -140,7 +140,7 @@ ANSWER: SELECT DISTINCT SALARY FROM Worker ORDER BY SALARY DESC LIMIT 3;
 ANSWER: SELECT DISTINCT SALARY FROM Worker ORDER BY SALARY LIMIT 3;
 
 48) Write An SQL Query To Fetch Nth Max Salaries From A Table.
-ANSWER: 
+ANSWER: SELECT * FROM `Worker` ORDER BY SALARY DESC LIMIT 0,1;
 
 49) Write An SQL Query To Fetch Departments Along With The Total Salaries Paid For Each Of Them.
 ANSWER: SELECT DEPARTMENT, SUM(SALARY) as "annual" FROM Worker GROUP by DEPARTMENT;
