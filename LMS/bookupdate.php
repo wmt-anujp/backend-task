@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     ?>
     <!-- php ends -->
     <!-- HTML Starts -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand">Library Management System</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -110,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         </div>
     </nav>
     <div class="container mt-4">
-        <h3 style="color: lightgreen;">Update Book</h3>
+        <h3 style="color: lightgreen;" class="my-4">Update Book</h3>
         <form method="POST" id="addbookform" enctype="multipart/form-data">
             <input type="hidden" name="hidden_id" value="<?php echo $bupid; ?>">
             <div class="mb-3">
@@ -151,7 +151,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description of Book</label>
-                <textarea class="form-control" name="description" id="description" maxlength="500" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32) || (event.charCode>47) && (event.charCode<58) || (event.charCode==46)" required><?php echo $book_data_rows['Description']; ?></textarea>
+                <textarea class="form-control" name="description" id="description" rows="5" maxlength="500" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32) || (event.charCode>47) && (event.charCode<58) || (event.charCode==46)" required><?php echo $book_data_rows['Description']; ?></textarea>
             </div>
             <div class="mb-3">
                 <div class="row">
@@ -167,6 +167,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             </div>
             <div class="mb-3">
                 <button type="submit" class="btn btn-success " name="updatebook">Update Book</button>
+                <a href="book.php" class="btn btn-danger mx-2">Cancel</a>
             </div>
         </form>
     </div>

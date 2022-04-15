@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     }
     ?>
     <!-- HTML Starts -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand">Library Management System</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         </div>
     </nav>
     <div class="container mt-4">
-        <h3 style="color: lightgreen;">Update Author</h3>
+        <h3 style="color: lightgreen;" class="my-4">Update Author</h3>
         <form method="POST" id="addauthorform" action="authorupdate.php">
             <input type="hidden" name="hidden_id" value="<?php echo $aupid; ?>">
             <div class="mb-3">
@@ -140,6 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             </div>
             <div class="mb-3">
                 <button type="submit" class="btn btn-success" name="updateauthor">Update Author</button>
+                <a class="btn btn-danger mx-2" href="author.php" value=Cancel>Cancel</a>
             </div>
         </form>
     </div>

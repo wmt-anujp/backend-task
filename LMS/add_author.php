@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         }
     }
     ?>
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand">Library Management System</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,6 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         </div>
     </nav>
     <div class="container mt-4">
+        <h3 style="color: lightgreen;" class="my-4">Add Author</h3>
         <form method="POST" id="addauthorform">
             <div class="mb-3">
                 <label for="fname" class="form-label">First Name</label>
@@ -117,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <input type="text" class="form-control" id="description" name="description" maxlength="500" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)" required>
+                <textarea class="form-control" name="description" rows="5" id="description" maxlength="489" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32) || (event.charCode>47) && (event.charCode<58) || (event.charCode==46)" required></textarea>
             </div>
             <div class="mb-3">
                 <div class="row">
@@ -133,6 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             </div>
             <div class="mb-3">
                 <button type="submit" class="btn btn-success" name="addauthor">Add Author</button>
+                <a href="author.php" class="btn btn-danger mx-2">Cancel</a>
             </div>
         </form>
     </div>

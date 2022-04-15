@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand">Library Management System</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,8 +70,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         }
     }
     ?>
-    <div class="container m-5">
-        <h2 style="color: lightgreen;text-decoration: underline;" class="my-4">Details of <?php echo $bdetails_query_rows['1']; ?> Book</h2>
+    <div class="container my-5">
+        <h2 style="color: lightgreen;text-decoration: underline;" class="my-5">Details of <?php echo $bdetails_query_rows['1']; ?> Book</h2>
         <p>Title of Book is: <?php echo $bdetails_query_rows['1']; ?></p>
         <p>Pages of the books are: <?php echo $bdetails_query_rows['2']; ?></p>
         <p>Language of the book is: <?php echo $bdetails_query_rows['3']; ?></p>

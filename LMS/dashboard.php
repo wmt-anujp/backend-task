@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <div class="container m-5">
         <div class="row">
             <div class="col-12" style="display: flex;justify-content: center; align-items: center;">
-                <h2>Welcome <?php echo ($_SESSION["Username"]); ?></h2>
+                <h2 style="color: lightgreen;">Welcome <?php echo ($_SESSION["Username"]); ?></h2>
             </div>
         </div>
     </div>

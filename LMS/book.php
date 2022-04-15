@@ -105,8 +105,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     <td>" . $book_status_display . "</td>"; ?>
                     <td>
                         <a class='btn btn-success' href='bookupdate.php?bupid=<?php echo $book_rows['ID'] ?>'>Update</a>
-                        <a class='btn btn-danger mx-2' href='book.php?bdelid=<?php echo $book_rows['ID'] ?>'>Delete</a>
-                        <a class='btn btn-primary my-3' href='bookdetail.php?bid=<?php echo $book_rows['ID'] ?>'>View Details of book</a>
+                        <a class='btn btn-danger m-2' href='book.php?bdelid=<?php echo $book_rows['ID'] ?>'>Delete</a>
+                        <a class='btn btn-primary m-2' href='bookdetail.php?bid=<?php echo $book_rows['ID'] ?>'>View Details of book</a>
                     </td>
                     </tr>
                 <?php

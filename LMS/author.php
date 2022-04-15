@@ -91,10 +91,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     } else {
                         $status_display = "Unavailable";
                     }
+                    $temp_date = strtotime($rows["DOB"]);
+                    $date = date("d/m/Y", $temp_date);
                     echo "<tr style='text-align: center;'>
                     <td>" . $id . "</td>
                     <td>" . $rows["Name"] . "</td>
-                    <td>" . $rows["DOB"] . "</td>
+                    <td>" . $date . "</td>
                     <td>" . $rows["Gender"] . "</td>
                     <td>" . $rows["Address"] . "</td>
                     <td>" . $rows["Mobile"] . "</td>
@@ -102,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     <td>" . $status_display . "</td>
                     <td>
                         <a class='btn btn-success' href='authorupdate.php?aupid=" . $rows['ID'] . "'>Update</a>
-                        <a class='btn btn-danger' href='author.php?adelid=" . $rows['ID'] . "'>Delete</a>
+                        <a class='btn btn-danger mx-2 my-2' href='author.php?adelid=" . $rows['ID'] . "'>Delete</a>
                     </td></tr>";
                     $id++;
                     // print_r($rows['ID'] . "<br>");
