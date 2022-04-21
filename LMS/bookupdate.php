@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="book_valid.js"></script>
     <script language="javascript" type="text/javascript">
-        window.history.forward();
+        // window.history.forward();
     </script>
     <title>Book Update Page</title>
 </head>
@@ -128,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             </div>
             <div class="mb-3">
                 <label for="bookauthor" class="form-label">Author of Book</label>
-                <select class="form-select" name="bookauthor[]" id="bookauthor" multiple>
+                <select class="form-select" name="bookauthor[]" id="bookauthor" multiple required>
                     <option>Select the Author</option>
                     <?php
                     while ($display_author_row = mysqli_fetch_array($display_author_query_execute)) {
