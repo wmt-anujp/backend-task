@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,18 +15,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    // return view('welcome');
-    return redirect("about");
-});
-// Route::view('/login', "welcome");
-
-Route::get('/about', function () {
-    return "welcome to about page";
-    return view('about');
-});
-// Route::view("about", "about");
+// Route::get('/', function () {
+//     return view('welcome');
+//     // return redirect("about");
+// });
+Route::view('/', "welcome");
+Route::view("about", "about");
 Route::view("contact", "contact");
-Route::get('/greeting', function () {
-    return 'Hello World';
+Route::get('/user', [UserController::class, 'index']);
+
+// Route::get('/', function (Request $request) {
+//     return "hello request";
+// });
+// Route::get('/user/{id}', function (Request $request, $id) {
+//     return 'User ' . $id . " Hello";
+// });
+
+Route::fallback(function () {
+    return "executing fallback";
 });
