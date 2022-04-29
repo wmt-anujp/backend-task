@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTestTable extends Migration
+class CreateArtistTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateTestTable extends Migration
      */
     public function up()
     {
-        Schema::create('test', function (Blueprint $table) {
-            $table->id();
-            $table->string('username');
-            $table->string('address');
-            $table->enum('difficulty', ['easy', 'hard']);
+        Schema::create('artist', function (Blueprint $table) {
+            $table->bigIncrements("id");
+            $table->string("name", 50);
+            $table->string('email')->unique();
+            $table->string("password", 30);
+            $table->string("username")->unique();
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateTestTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('test');
+        Schema::dropIfExists('artist');
     }
 }
