@@ -13,12 +13,6 @@ class AlterTestTable extends Migration
      */
     public function up()
     {
-        // Schema::table('test', function (Blueprint $table) {
-        //     $table->enum('difficulty', ['easy', 'hard']);
-        // });
-        Schema::table('test', function (Blueprint $table) {
-            $table->dropColumn('difficulty');
-        });
     }
 
     /**
@@ -28,5 +22,8 @@ class AlterTestTable extends Migration
      */
     public function down()
     {
+        Schema::table('test', function (Blueprint $table) {
+            $table->dropColumn('difficulty');
+        });
     }
 }
