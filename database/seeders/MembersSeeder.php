@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 use App\Models\artist;
+use Faker\Factory as faker;
 
 class MembersSeeder extends Seeder
 {
@@ -18,15 +19,19 @@ class MembersSeeder extends Seeder
      */
     public function run()
     {
-        // DB::table('artist')->insert([
-        //     "name" => Str::random(10),
-        //     "email" => Str::random(10) . "@gmail.com",
-        //     "password" => Hash::make("password"),
-        //     "username" => Str::random(10),
-        //     "created_at" => Carbon::now()->format('Y-m-d H:i:s'),
-        // ]);
-        artist::factory()
-            ->count(50)
-            ->create();
+        $faker = Faker::create();
+        foreach (range(1, 10) as $value) {
+            DB::table('artist')->insert([
+                "name" => $faker->name,
+                "email" => $faker->email,
+                "password" => $faker->password,
+                "username" => $faker->userName,
+                "created_at" => $faker->dateTimeThisYear($max = '+1 year')->format('Y-m-d H:i:s'),
+                "updated_at" => $faker->dateTimeThisYear($max = '+1 year')->format('Y-m-d H:i:s'),
+            ]);
+        }
+        // artist::factory()
+        //     ->count(50)
+        //     ->create();
     }
 }
