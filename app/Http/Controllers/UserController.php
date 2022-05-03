@@ -10,4 +10,9 @@ class UserController extends Controller
     {
         return "Hello controller";
     }
+    function viewload()
+    {
+        $data = ["ap", "pp", "cs", "ac"];
+        return view("about", ["users" => $data]);
+    }
 }

@@ -35,3 +35,5 @@ Route::get('/user', [UserController::class, 'index']);
 Route::fallback(function () {
     return "executing fallback";
 });
+
+Route::get("users", [UserController::class, "viewload"]);
