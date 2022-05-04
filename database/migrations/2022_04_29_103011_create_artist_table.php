@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Database\Eloquent\Factories\Relationship;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -33,3 +34,5 @@ class CreateArtistTable extends Migration
         Schema::dropIfExists('artist');
     }
 }
+// Relationship via documentation and video and also implmented, mutators video and implementation.
+// mutators in progress

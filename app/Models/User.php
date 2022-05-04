@@ -41,4 +41,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function getAddressRelation()
+    {
+        return $this->hasOne(related: 'App\Models\artist', foreignKey: 'user_id', localKey: 'id');
+    }
+    public function getPostRelation()
+    {
+        return $this->hasMany(related: 'App\Models\artist', foreignKey: 'user_id', localKey: 'id');
+    }
 }

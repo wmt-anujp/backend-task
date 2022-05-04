@@ -3,16 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\artist;
 
 class UserController extends Controller
 {
-    function index()
+    // mutators demo
+    public function index()
     {
-        return "Hello controller";
+        $artist = new artist;
+        $artist->name = "Anuj";
+        $artist->email = "ahp.pzz2000";
+        $artist->save();
     }
-    function viewload()
-    {
-        $data = ["ap", "pp", "cs", "ac"];
-        return view("about", ["users" => $data]);
-    }
+    // function viewload()
+    // {
+    //     $data = ["ap", "pp", "cs", "ac"];
+    //     return view("about", ["users" => $data]);
+    // }
+
+    // public function getAddressRelation()
+    // {
+    //     return $this->hasOne(related:'App\')
+    // }
 }

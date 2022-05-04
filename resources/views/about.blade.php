@@ -17,8 +17,7 @@
 </body>
 
 </html>
-Date:03/05/2022
+Date:04/05/2022
 Project: WMT Training
--completed learning validation via documentation
--learning relationship and Auth in laravel
--learnt and implemented blade template.
+-learnt relationship via documentation and video and also implmented
+-learning mutators video and implementation.

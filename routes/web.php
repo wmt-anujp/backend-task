@@ -20,10 +20,8 @@ use Illuminate\Http\Request;
 //     return view('welcome');
 //     // return redirect("about");
 // });
-Route::view('/', "welcome");
-Route::view("about", "about");
-Route::view("contact", "contact");
-Route::get('/user', [UserController::class, 'index']);
+// Route::view("about", "about");
+// Route::view("contact", "contact");
 
 // Route::get('/', function (Request $request) {
 //     return "hello request";
@@ -36,4 +34,6 @@ Route::fallback(function () {
     return "executing fallback";
 });
 
-Route::get("users", [UserController::class, "viewload"]);
+// Route::get("users", [UserController::class, "viewload"]);
+
+Route::get('artists', [UserController::class, 'index']);
