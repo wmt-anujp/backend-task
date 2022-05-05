@@ -17,7 +17,3 @@
 </body>
 
 </html>
-Date:04/05/2022
-Project: WMT Training
--learnt relationship via documentation and video and also implmented
--learning mutators video and implementation.

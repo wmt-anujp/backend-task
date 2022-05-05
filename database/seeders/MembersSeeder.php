@@ -30,8 +30,5 @@ class MembersSeeder extends Seeder
                 "updated_at" => $faker->dateTimeThisYear($max = '+1 year')->format('Y-m-d H:i:s'),
             ]);
         }
-        // artist::factory()
-        //     ->count(50)
-        //     ->create();
     }
 }

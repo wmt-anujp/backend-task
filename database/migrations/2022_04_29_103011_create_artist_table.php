@@ -34,5 +34,3 @@ class CreateArtistTable extends Migration
         Schema::dropIfExists('artist');
     }
 }
-// Relationship via documentation and video and also implmented, mutators video and implementation.
-// mutators in progress
